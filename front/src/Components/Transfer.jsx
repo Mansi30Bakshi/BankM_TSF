@@ -18,10 +18,10 @@ const Transfer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/transfers', {
+      await axios.post('http://localhost:5001/transfers', {
         from: fromCustomer,
         to: toCustomer,
-        amount
+        amount: Number(amount)  // Ensure amount is a number
       });
       alert('Transfer successful');
       navigate('/customers');
@@ -31,58 +31,60 @@ const Transfer = () => {
   };
 
   return (
-    <div className="container mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-5">Transfer Money</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-5">
-          <label className="block mb-2">From Customer</label>
-          <select
-            value={fromCustomer}
-            onChange={(e) => setFromCustomer(e.target.value)}
-            className="block w-full px-3 py-2 border rounded"
-            required
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-blue-100 p-6">
+      <div className="container mx-auto max-w-lg bg-white shadow-xl rounded-lg p-8">
+        <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">Transfer Money</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block mb-2 text-gray-700 font-medium">From Customer</label>
+            <select
+              value={fromCustomer}
+              onChange={(e) => setFromCustomer(e.target.value)}
+              className="block w-full px-4 py-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-300 transition duration-200 ease-in-out"
+              required
+            >
+              <option value="" disabled>Select a customer</option>
+              {customers.map(customer => (
+                <option key={customer._id} value={customer._id}>
+                  {customer.name} - ${customer.balance}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block mb-2 text-gray-700 font-medium">To Customer</label>
+            <select
+              value={toCustomer}
+              onChange={(e) => setToCustomer(e.target.value)}
+              className="block w-full px-4 py-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-300 transition duration-200 ease-in-out"
+              required
+            >
+              <option value="" disabled>Select a customer</option>
+              {customers.map(customer => (
+                <option key={customer._id} value={customer._id}>
+                  {customer.name} - ${customer.balance}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block mb-2 text-gray-700 font-medium">Amount</label>
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(Number(e.target.value))}  // Ensure input is a number
+              className="block w-full px-4 py-3 border rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-blue-300 transition duration-200 ease-in-out"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-md shadow-md hover:from-blue-600 hover:to-purple-600 transition duration-300 ease-in-out transform hover:-translate-y-1"
           >
-            <option value="" disabled>Select a customer</option>
-            {customers.map(customer => (
-              <option key={customer._id} value={customer._id}>
-                {customer.name} - ${customer.balance}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-5">
-          <label className="block mb-2">To Customer</label>
-          <select
-            value={toCustomer}
-            onChange={(e) => setToCustomer(e.target.value)}
-            className="block w-full px-3 py-2 border rounded"
-            required
-          >
-            <option value="" disabled>Select a customer</option>
-            {customers.map(customer => (
-              <option key={customer._id} value={customer._id}>
-                {customer.name} - ${customer.balance}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-5">
-          <label className="block mb-2">Amount</label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="block w-full px-3 py-2 border rounded"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="px-6 py-3 bg-blue-500 text-white rounded"
-        >
-          Transfer
-        </button>
-      </form>
+            Transfer
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
