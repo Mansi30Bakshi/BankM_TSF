@@ -16,7 +16,7 @@ const CDetails = () => {
   if (!customer) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-50 to-green-100 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-gray-300 p-6">
       <div className="container mx-auto max-w-lg bg-white shadow-xl rounded-lg p-8">
         <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">Customer Details</h1>
         <div className="bg-gray-100 rounded-lg shadow-md p-6 mb-6">

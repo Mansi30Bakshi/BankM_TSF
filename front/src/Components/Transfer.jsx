@@ -31,7 +31,7 @@ const Transfer = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-blue-100 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-gray-300 p-6">
       <div className="container mx-auto max-w-lg bg-white shadow-xl rounded-lg p-8">
         <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">Transfer Money</h1>
         <form onSubmit={handleSubmit} className="space-y-6">

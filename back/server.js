@@ -44,6 +44,16 @@ app.post('/transfers', async (req, res) => {
   }
 });
 
+// New endpoint for fetching transfers with populated customer names
+app.get('/transfers', async (req, res) => {
+  try {
+    const transfers = await Transfer.find().populate('from', 'name').populate('to', 'name');
+    res.json(transfers);
+  } catch (error) {
+    res.status(500).send('Error fetching transfers: ' + error.message);
+  }
+});
+
 app.listen(5001, () => {
   console.log('Server running on port 5001');
 });

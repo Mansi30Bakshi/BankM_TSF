@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 
 const Customer = () => {
   const [customers, setCustomers] = useState([]);
@@ -18,9 +19,19 @@ const Customer = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-50 to-green-100 p-6">
-      <div className="container mx-auto max-w-4xl">
-        <h1 className="text-4xl font-bold mb-10 text-center text-gray-800">All Customers</h1>
+    <div className="relative min-h-screen bg-gradient-to-r from-green-50 to-green-100 p-6">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center filter"
+        style={{ backgroundImage: 'url("https://images.pexels.com/photos/7911705/pexels-photo-7911705.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")' }}
+      ></div>
+      
+      {/* Content */}
+      <div className="relative container mx-auto max-w-4xl">
+        <h1 className="text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-black p-5 shadow-lg">
+          ALL CUSTOMERS
+        </h1>
+
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {customers.map(customer => (
             <li 
@@ -33,7 +44,6 @@ const Customer = () => {
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-xl font-semibold">{customer.name}</div>
                 </div>
-            
                 <div className="text-sm text-gray-500 mt-2">Click for more details</div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-300 opacity-0 hover:opacity-25 transition-opacity duration-300 rounded-lg"></div>
