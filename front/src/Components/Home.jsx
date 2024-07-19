@@ -16,6 +16,10 @@ const Home = () => {
             <Link to="/customers" className="inline-block px-10 py-5 bg-blue-800 text-white font-bold rounded-lg shadow-lg hover:bg-blue-900 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
               View All Customers
             </Link>
+            <br></br>
+            <Link to="/transfer" className="inline-block px-14 py-5 bg-blue-800 text-white font-bold rounded-lg shadow-lg hover:bg-blue-900 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+              Transfer Money
+            </Link>
           </div>
         </div>
       </div>
